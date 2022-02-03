@@ -2,8 +2,6 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-class Matrix;
-static vector<Matrix> Vec;
 class Matrix
 {
 public:
@@ -20,3 +18,4 @@ private:
 	int D;
 	int calculate_D(vector<int> X, vector<int> Y);
 };
+extern vector<Matrix> Vec;

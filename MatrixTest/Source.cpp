@@ -1,19 +1,19 @@
 #include "MatrixTest.h"
+
 int main()
 {
 	vector<int> X = { 0,1,2,3,4,5,6,7,8,9,10 };
 	vector<int> Y = { 0,1,2,3,4,5,6,7,8,9,10 };
 	Matrix source(X, Y);
-	/*
 		bool flag = true;
 		while (flag)
-	{
+		{
+		cout << Vec.size() << endl;
 		flag = Matrix(X, Y).check_matrix();
 		flag = erase_foo(X, 2);
-		flag = Matrix(X, Y).check_matrix();
 		flag = erase_foo(Y, 3);
-	}
-	cout << "_________________________" << endl;*/
+		}
+	cout << "_________________________" << endl;
 	return 0;
 }
 Matrix Foo(Matrix mat) {
