@@ -1,4 +1,5 @@
 #pragma once
+#define END_FOO "_________________________________________"
 #include <iostream>
 #include <vector>
 #include "Martix.h"

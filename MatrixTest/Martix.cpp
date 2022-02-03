@@ -5,24 +5,24 @@ Matrix::Matrix(vector<int> X, vector<int> Y)
 	this->X = X;
 	this->Y = Y;
 	this->Summ_count.resize(X.back() + Y.back() + 1);
-	this->K = (X.size() + Y.size()) / (Summ_count.capacity());
+	this->K = static_cast<float>(X.size() * Y.size()) / static_cast<float>(Summ_count.capacity());
 	this->D = calculate_D(X, Y);
 	static vector<Matrix> Vec;
 }
-int Matrix::get_K()
+float Matrix::get_K()
 {
 	return K;
 }
-int Matrix::get_D()
+float Matrix::get_D()
 {
 	return D;
 }
-int Matrix::calculate_D(vector<int> X, vector<int> Y)
+float Matrix::calculate_D(vector<int> X, vector<int> Y)
 {
-	int D;
-	D = X.size() / Y.size();
+	float D;
+	D = static_cast<float>(X.size()) / Y.size();
 	if (D > 1)
-		return Y.size() / X.size();
+		return static_cast<float>(Y.size()) / X.size();
 	else
 	{
 		return D;
@@ -30,24 +30,28 @@ int Matrix::calculate_D(vector<int> X, vector<int> Y)
 }
 void Matrix::print_matrix()
 {
+	cout << START_FOO << endl;
 	for (int y : Y)
 	{
 		for (int x : X) {
-			std::cout << x + y << "\t";
+			printf("%3d", x + y);
 		}
 		std::cout << endl;
 	}
 	cout << endl;
 	for (int i = 0; i < Summ_count.size(); i++)
 	{
-		cout << i << "\t";
+		printf("%2d |", i);
 	}
 	cout << endl;
 	for (int z : Summ_count)
 	{
-		cout << z << "\t";
+		printf("%2d |", z);
 	}
 	std::cout << endl << endl;
+	cout << "K = " << K << endl << "D = " << D << endl;
+	cout << END_FOO << endl;
+
 }
 bool Matrix::check_matrix()
 {
@@ -67,17 +71,17 @@ bool Matrix::check_matrix()
 	}
 	if (multi == 0)
 	{
-		cout << "***Error!***" << endl;
+		cout << "Matrix.cpp: - Нарушена непрерывность" << endl;
 		for (int x : X)
 		{
-			cout << x << "\t";
+			printf("\t%2d |", x);
 		}
 		cout << endl;
 		for (int y : Y)
 		{
-			cout << y << "\t";
+			printf("\t%2d |", y);
 		}
-		cout << endl;;
+		cout << endl << endl;
 		return false;
 	}
 	else

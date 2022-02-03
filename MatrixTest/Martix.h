@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#define END_FOO "\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\"
+#define START_FOO "/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 using namespace std;
 class Matrix
 {
@@ -8,14 +10,14 @@ public:
 	Matrix(vector<int> X, vector<int> Y);
 	void print_matrix();
 	bool check_matrix();
-	int get_K();
-	int get_D();
+	float get_K();
+	float get_D();
 private:
 	vector<int> X;
 	vector<int> Y;
 	vector<int> Summ_count;
-	int K;
-	int D;
-	int calculate_D(vector<int> X, vector<int> Y);
+	float K;
+	float D;
+	float calculate_D(vector<int> X, vector<int> Y);
 };
 extern vector<Matrix> Vec;
