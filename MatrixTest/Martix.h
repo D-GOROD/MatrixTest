@@ -9,7 +9,7 @@ class Matrix
 public:
 	Matrix(vector<int> X, vector<int> Y);
 	void print_matrix();
-	bool check_matrix();
+	bool check_matrix(bool print);
 	float get_K();
 	float get_D();
 private:

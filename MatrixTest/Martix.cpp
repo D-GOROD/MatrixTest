@@ -53,7 +53,7 @@ void Matrix::print_matrix()
 	cout << END_FOO << endl;
 
 }
-bool Matrix::check_matrix()
+bool Matrix::check_matrix(bool print)
 {
 	int z;
 	for (int x : X)
@@ -71,23 +71,26 @@ bool Matrix::check_matrix()
 	}
 	if (multi == 0)
 	{
-		cout << "Matrix.cpp: - Нарушена непрерывность" << endl;
-		for (int x : X)
-		{
-			printf("\t%2d |", x);
+		if (print) {
+			cout << "Matrix.cpp: - Нарушена непрерывность" << endl;
+			for (int x : X)
+			{
+				printf("\t%2d |", x);
+			}
+			cout << endl;
+			for (int y : Y)
+			{
+				printf("\t%2d |", y);
+			}
+			cout << endl << endl;
 		}
-		cout << endl;
-		for (int y : Y)
-		{
-			printf("\t%2d |", y);
-		}
-		cout << endl << endl;
 		return false;
 	}
 	else
 	{
 		Vec.push_back(*this);
-		print_matrix();
+		if(print)
+			print_matrix();
 		return true;
 	}
 }
