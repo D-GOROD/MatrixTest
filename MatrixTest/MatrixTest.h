@@ -7,4 +7,5 @@
 class Matrix;
 vector<Matrix> Vec;
 using namespace std;
+int min_I = 0;
 bool erase_foo(vector<int>& vec, int a);

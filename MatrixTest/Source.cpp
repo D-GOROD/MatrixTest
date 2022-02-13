@@ -2,14 +2,14 @@
 int main()
 {
 	setlocale(LC_ALL, "RU");
-	int size = 6;
+	int size = 11;
 	int N = pow(2, ((size - 2) * 2)) - 1;
 	int M = (size - 2) * 2;
 	int M2 = size - 2;
 	for (N; N >= 0; N--)
 	{
-		vector<int> X = { 0,1,2,3,4,5 };
-		vector<int> Y = { 0,1,2,3,4,5 };
+		vector<int> X = { 0,1,2,3,4,5,6,7,8,9,10 };
+		vector<int> Y = { 0,1,2,3,4,5,6,7,8,9,10 };
 		for (int i = 0; i < M; i++) {
 			if (N & (1 << i)) {
 				if (i < M2)
@@ -20,9 +20,12 @@ int main()
 				}
 			}
 		}
-		Matrix(X, Y).check_matrix(true);
+		Matrix(X, Y).check_matrix(false);
 	}
-	cout << Vec.size();
+	cout << Vec.size() << endl;
+	cout << min_I << endl;
+	Vec[min_I].print_matrix();
+
 }
 bool erase_foo(vector<int> &vec, int a)
 {

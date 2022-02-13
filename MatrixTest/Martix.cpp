@@ -88,7 +88,13 @@ bool Matrix::check_matrix(bool print)
 	}
 	else
 	{
+		if (D < 0.6)
+			return false;
 		Vec.push_back(*this);
+		if (K < Vec[min_I].get_K())
+		{
+			min_I = Vec.size() - 1;
+		}
 		if(print)
 			print_matrix();
 		return true;

@@ -17,7 +17,10 @@ private:
 	vector<int> Y;
 	vector<int> Summ_count;
 	float K;
+	float max_K = 0;
 	float D;
+
 	float calculate_D(vector<int> X, vector<int> Y);
 };
 extern vector<Matrix> Vec;
+extern int min_I;
