@@ -1,15 +1,16 @@
 #pragma once
-#define END_FOO "_________________________________________"
 #include <iostream>
 #include <vector>
-#include "Martix.h"
-#include <cmath>
-#include <Windows.h>
 #include <chrono>
-#include <conio.h>
-class Matrix;
-vector<Matrix> Vec;
+#include <Windows.h>
+#include <algorithm>
+#include <fstream>
+#include "Martix.h"
+
+#define D_MIN 0.6
+#define SIZE 10
+#define LENGHT_RESULT_VECTOR 0
+
 using namespace std;
-int min_I = 0;
 bool erase_foo(vector<int>& vec, int a);
-void print_vector(std::vector<int> const& input);
+void print_procent(int procent);

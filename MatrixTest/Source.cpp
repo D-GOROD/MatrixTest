@@ -1,48 +1,112 @@
 #include "MatrixTest.h"
 int main()
 {
-	setlocale(LC_ALL, "RU");
 	auto start = chrono::high_resolution_clock::now();
-	int size = 11;
-	unsigned int N = pow(2, ((size - 2) * 2)) - 1;
-	unsigned int procent100 = N / 100;
-	unsigned int procent = N - procent100;
-	int proc = 1;
-	int M = (size - 2) * 2;
-	int M2 = size - 2;
+	unsigned int N = static_cast<int>(pow(2, ((SIZE - 2) * 2))) - 1;
+	int oneProcent = N / 100;
+	int procentPosition = N;
+	int procent = 0;
+	int M = (SIZE - 2) * 2;
+	int halfM = M / 2;
+	vector<int> X;
+	vector<int> Y;
+	vector<int> Summ_count;
+	vector<int> X_min;
+	vector<int> Y_min;
+	vector<int> Summ_count_min;
+	vector<Matrix> Result;
+	float K_min = 100;
+	float D_max = 0;
+	bool flag = true;
 	for (N; N > 0; N--)
 	{
-		vector<int> X = { 0,1,2,3,4,5,6,7,8,9,10 };
-		vector<int> Y = { 0,1,2,3,4,5,6,7,8,9,10 };
+		if (N == procentPosition)
+		{
+			print_procent(procent);
+			procent++;
+			procentPosition -= oneProcent;
+		}
+		X.clear();
+		Y.clear();
+		Summ_count.clear();
+		for (int i = 0; i < SIZE; i++) {
+			X.push_back(i);
+			Y.push_back(i);
+		}
+		Summ_count.resize(X.back() + Y.back() + 1);
 		for (int i = 0; i < M; i++) {
 			if (N & (1 << i)) {
-				if (i < M2)
-					erase_foo(Y, (M2 - (i + 1)) + 1);
+				if (i < halfM)
+					erase_foo(Y, (halfM - (i + 1)) + 1);
 				else
 				{
-					erase_foo(X, (M2 * 2 - (i - 1)) - 1);
+					erase_foo(X, (halfM * 2 - (i - 1)) - 1);
 				}
 			}
 		}
-		if (N == procent)
+		int z;
+		for (int x : X)
 		{
-			system("cls");
-			cout << proc << " %" << endl;
-			proc++;
-			procent -= procent100;
+			for (int y : Y)
+			{
+				z = x + y;
+				Summ_count[z]++;
+			}
 		}
-		Matrix(X, Y).check_matrix(false);
-		//print_vector(X);
-		//print_vector(Y);
+		int multi = 1;
+		for (int z : Summ_count)
+		{
+			multi *= z;
+		}
+		if (multi != 0)
+		{
+			float D;
+			D = static_cast<float>(X.size()) / Y.size();
+			if (D > 1)
+				D = static_cast<float>(Y.size()) / X.size();
+			if (D >= D_MIN)
+			{
+				if (LENGHT_RESULT_VECTOR != 0)
+				{
+					Matrix matrix(X, Y, Summ_count, D);
+					Result.push_back(matrix);
+					sort(Result.begin(), Result.end());
+					if (Result.size() > LENGHT_RESULT_VECTOR) Result.pop_back();
+				}
+				else
+				{
+					float K = K = static_cast<float>(X.size() * Y.size()) / static_cast<float>(Summ_count.capacity());
+					if (K < K_min)
+					{
+						K_min = K;
+						D_max = D;
+						X_min = X;
+						Y_min = Y;
+						Summ_count_min = Summ_count;
+					}
+				}
+			}
+		}
 	}
-	system("cls");
+	if (LENGHT_RESULT_VECTOR == 0)
+	{
+		Result.push_back(Matrix(X_min, Y_min, Summ_count_min, D_max));
+	}
+	Result[0].print_matrix_to_console();
+	ofstream fout;
+	fout.open("Result.txt");
+	int i = 1;
+	for (Matrix mat : Result)
+	{
+		fout << "/*" << i << "*\\" << endl;
+		mat.print_matrix_to_file(fout);
+		fout << endl;
+		i++;
+	}
+	fout.close();
 	auto end = chrono::high_resolution_clock::now();
 	chrono::duration<float> duration = end - start;
-	cout << "Time = " << duration.count() << "s" << endl;
-	cout << "Total - " << Vec.size() << endl;
-	cout << "Index min_K - " << min_I << endl;
-	Vec[min_I].print_matrix();
-	_getch();
+	cout << "Time - " << duration.count() << endl;
 }
 bool erase_foo(vector<int> &vec, int a)
 {
@@ -64,4 +128,9 @@ void print_vector(std::vector<int> const& input)
 		std::cout << input.at(i) << ' ';
 	}
 	std::cout << std::endl << std::endl;
+}
+void print_procent(int procent)
+{
+	system("cls");
+	cout << procent << " %" << endl;
 }

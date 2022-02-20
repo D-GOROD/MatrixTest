@@ -1,26 +1,24 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <vector>
-#define END_FOO "\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\"
-#define START_FOO "/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 using namespace std;
 class Matrix
 {
 public:
-	Matrix(vector<int> X, vector<int> Y);
-	void print_matrix();
-	bool check_matrix(bool print);
+	Matrix(vector<int> X, vector<int> Y, vector<int> Summ_count, float D);
+	void print_matrix_to_console();
+	void print_matrix_to_file(ofstream& fout);
 	float get_K();
 	float get_D();
+	friend bool operator> (const Matrix& m1, const Matrix& m2);
+	friend bool operator< (const Matrix& m1, const Matrix& m2);
+	friend bool operator>= (const Matrix& m1, const Matrix& m2);
+	friend bool operator<= (const Matrix& m1, const Matrix& m2);
 private:
 	vector<int> X;
 	vector<int> Y;
 	vector<int> Summ_count;
 	float K;
-	float max_K = 0;
 	float D;
-
-	float calculate_D(vector<int> X, vector<int> Y);
 };
-extern vector<Matrix> Vec;
-extern int min_I;
