@@ -2,13 +2,16 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <clocale>
 #include <Windows.h>
 #include <algorithm>
 #include <fstream>
 #include "Martix.h"
 
-#define D_MIN 0.6
-#define SIZE 10
+
+#define D_MIN 0.7
+#define SIZE_X 25
+#define SIZE_Y 13
 #define LENGHT_RESULT_VECTOR 0
 
 using namespace std;

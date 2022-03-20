@@ -39,11 +39,10 @@ void Matrix::print_matrix_to_console()
 	{
 		printf("%2d |", z);
 	}
-	std::cout << endl << endl;
+	cout << endl << endl;
 	cout << "K = " << K << endl << "D = " << D << endl;
 	cout << END_FOO << endl;
 }
-
 void Matrix::print_matrix_to_file(ofstream& fout)
 {
 	fout << START_FOO << endl;

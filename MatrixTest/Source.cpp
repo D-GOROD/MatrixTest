@@ -2,45 +2,45 @@
 int main()
 {
 	auto start = chrono::high_resolution_clock::now();
-	unsigned int N = static_cast<int>(pow(2, ((SIZE - 2) * 2))) - 1;
+	setlocale(LC_ALL, "RU");
+	unsigned int N = static_cast<int>(pow(2, ((SIZE_X - 2) + (SIZE_Y - 2))))-1;
 	int oneProcent = N / 100;
 	int procentPosition = N;
 	int procent = 0;
-	int M = (SIZE - 2) * 2;
-	int halfM = M / 2;
-	vector<int> X;
-	vector<int> Y;
-	vector<int> Summ_count;
-	vector<int> X_min;
-	vector<int> Y_min;
-	vector<int> Summ_count_min;
+	int M = (SIZE_X - 2) + (SIZE_Y - 2);
+	int halfM = SIZE_Y-2;
+	vector<int> X, Y;
+	vector<int> X_min, Y_min;
+	vector<int> Summ_count, Summ_count_min;;
 	vector<Matrix> Result;
 	float K_min = 100;
 	float D_max = 0;
 	bool flag = true;
-	for (N; N > 0; N--)
-	{
-		if (N == procentPosition)
+		for (N; N > 0; N--)
 		{
-			print_procent(procent);
-			procent++;
-			procentPosition -= oneProcent;
-		}
+			if (N == procentPosition)
+			{
+				print_procent(procent);
+				procent++;
+				procentPosition -= oneProcent;
+			}
 		X.clear();
 		Y.clear();
 		Summ_count.clear();
-		for (int i = 0; i < SIZE; i++) {
+		for (int i = 0; i < SIZE_X; i++) {
 			X.push_back(i);
+		}
+		for (int i = 0; i < SIZE_Y; i++) {
 			Y.push_back(i);
 		}
 		Summ_count.resize(X.back() + Y.back() + 1);
 		for (int i = 0; i < M; i++) {
 			if (N & (1 << i)) {
 				if (i < halfM)
-					erase_foo(Y, (halfM - (i + 1)) + 1);
+					erase_foo(Y, (SIZE_Y - i - 2));
 				else
 				{
-					erase_foo(X, (halfM * 2 - (i - 1)) - 1);
+					erase_foo(X, (SIZE_X + SIZE_Y - i - 4));
 				}
 			}
 		}
@@ -103,10 +103,11 @@ int main()
 		fout << endl;
 		i++;
 	}
-	fout.close();
 	auto end = chrono::high_resolution_clock::now();
 	chrono::duration<float> duration = end - start;
 	cout << "Time - " << duration.count() << endl;
+	fout << "Time - " << duration.count() << endl;
+	fout.close();
 }
 bool erase_foo(vector<int> &vec, int a)
 {
