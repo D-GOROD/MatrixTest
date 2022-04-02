@@ -3,9 +3,9 @@ int main()
 {
 	auto start = chrono::high_resolution_clock::now();
 	setlocale(LC_ALL, "RU");
-	unsigned int N = static_cast<int>(pow(2, ((SIZE_X - 2) + (SIZE_Y - 2))))-1;
-	int oneProcent = N / 100;
-	int procentPosition = N;
+	long long N = (pow(2, ((SIZE_X - 2) + (SIZE_Y - 2))))-1;
+	long long oneProcent = N / 100;
+	long long procentPosition = N;
 	int procent = 0;
 	int M = (SIZE_X - 2) + (SIZE_Y - 2);
 	int halfM = SIZE_Y-2;
@@ -35,7 +35,7 @@ int main()
 		}
 		Summ_count.resize(X.back() + Y.back() + 1);
 		for (int i = 0; i < M; i++) {
-			if (N & (1 << i)) {
+			if (N & (static_cast<long long>(1) << i)) {
 				if (i < halfM)
 					erase_foo(Y, (SIZE_Y - i - 2));
 				else
