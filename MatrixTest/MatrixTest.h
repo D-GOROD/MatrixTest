@@ -10,9 +10,9 @@
 
 
 #define D_MIN 0.7
-#define SIZE_X 25
-#define SIZE_Y 13
-#define LENGHT_RESULT_VECTOR 1000
+#define SIZE_X 19
+#define SIZE_Y 12
+#define LENGHT_RESULT_VECTOR 0
 
 using namespace std;
 bool erase_foo(vector<int>& vec, int a);

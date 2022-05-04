@@ -1,104 +1,86 @@
-#include "MatrixTest.h"
-class Matrix
-{
-public:
-	Matrix(vector<int> X, vector<int> Y);
-	void print_matrix();
-	bool check_matrix();
-	int get_K();
-	int get_D();
+#include "Martix.h"
+#define END_FOO "\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\"
+#define START_FOO "/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/"
 
-private:
-	vector<int> X;
-	vector<int> Y;
-	vector<int> Summ_count;
-	int K;
-	int D;
-	int calculate_D(vector<int> X, vector<int> Y);
-};
-Matrix::Matrix(vector<int> X, vector<int> Y)
+Matrix::Matrix(vector<int> X, vector<int> Y, vector<int> Summ_count, float D)
 {
 	this->X = X;
 	this->Y = Y;
-	this->Summ_count.resize(X.back() + Y.back() + 1);
-	this->K = (X.size() + Y.size()) / (Summ_count.capacity());
-	this->D = calculate_D(X, Y);
+	this->Summ_count = Summ_count;
+	this->D = D;
+	this->K = static_cast<float>(X.size() * Y.size()) / static_cast<float>(Summ_count.capacity());
 }
-int Matrix::get_K()
+
+float Matrix::get_K()
 {
 	return K;
 }
-int Matrix::get_D()
+float Matrix::get_D()
 {
 	return D;
 }
-int Matrix::calculate_D(vector<int> X, vector<int> Y)
+void Matrix::print_matrix_to_console()
 {
-	int D;
-	D = X.size() / Y.size();
-	if (D > 1)
-		return Y.size() / X.size();
-	else
-	{
-		return D;
-	}
-}
-void Matrix::print_matrix()
-{
+	cout << START_FOO << endl;
 	for (int y : Y)
 	{
 		for (int x : X) {
-			std::cout << x + y << "\t";
+			printf("%3d", x + y);
 		}
 		std::cout << endl;
 	}
 	cout << endl;
 	for (int i = 0; i < Summ_count.size(); i++)
 	{
-		cout << i << "\t";
+		printf("%2d |", i);
 	}
 	cout << endl;
 	for (int z : Summ_count)
 	{
-		cout << z << "\t";
+		printf("%2d |", z);
 	}
-	std::cout << endl << endl;
+	cout << endl << endl;
+	cout << "K = " << K << endl << "D = " << D << endl;
+	cout << END_FOO << endl;
 }
-bool Matrix::check_matrix()
+void Matrix::print_matrix_to_file(ofstream& fout)
 {
-	int z;
-	for (int x : X)
+	fout << START_FOO << endl;
+	for (int y : Y)
 	{
-		for (int y : Y)
-		{
-			z = x + y;
-			Summ_count[z]++;
+		for (int x : X) {
+			fout << x + y << "\t";
 		}
+		fout << endl;
 	}
-	int multi = 1;
+	fout << endl;
+	for (int i = 0; i < Summ_count.size(); i++)
+	{
+		fout << i << "\t" << "|";
+	}
+	fout << endl;
 	for (int z : Summ_count)
 	{
-		multi *= z;
+		fout << z << "\t" << "|";
 	}
-	if (multi == 0)
-	{
-		cout << "***Error!***" << endl;
-		for (int x : X)
-		{
-			cout << x << "\t";
-		}
-		cout << endl;
-		for (int y : Y)
-		{
-			cout << y << "\t";
-		}
-		cout << endl;;
-		return false;
-	}
-	else
-	{
-		Vec.push_back(*this);
-		print_matrix();
-		return true;
-	}
+	fout << endl << endl;
+	fout << "K = " << K << endl << "D = " << D << endl;
+	fout << END_FOO << endl;
+}
+
+bool operator>(const Matrix& m1, const Matrix& m2)
+{
+	return m1.K > m2.K;
+}
+bool operator<(const Matrix& m1, const Matrix& m2)
+{
+	return m1.K < m2.K;
+}
+bool operator>=(const Matrix& m1, const Matrix& m2)
+{
+	return m1.K >= m2.K;
+}
+bool operator<=(const Matrix& m1, const Matrix& m2)
+{
+	return m1.K <= m2.K;
 }
