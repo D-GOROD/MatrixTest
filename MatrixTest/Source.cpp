@@ -16,7 +16,7 @@ int main()
 	float K_min = 100;
 	float D_max = 0;
 	bool flag = true;
-		for (N; N > 0; N--)
+		for (N; N > 0; N--)	
 		{
 			if (N == procentPosition)
 			{
