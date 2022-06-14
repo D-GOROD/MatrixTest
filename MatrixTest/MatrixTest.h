@@ -9,10 +9,10 @@
 #include "Martix.h"
 
 
-#define D_MIN 0.7
-#define SIZE_X 7
-#define SIZE_Y 7
-#define LENGHT_RESULT_VECTOR 0
+#define D_MIN 0.9
+#define SIZE_X 8
+#define SIZE_Y 10
+#define LENGHT_RESULT_VECTOR 2
 
 using namespace std;
 bool erase_foo(vector<int>& vec, int a);

@@ -108,6 +108,10 @@ int main()
 	cout << "Time - " << duration.count() << endl;
 	fout << "Time - " << duration.count() << endl;
 	fout.close();
+	while (true)
+	{
+
+	}
 }
 bool erase_foo(vector<int> &vec, int a)
 {
